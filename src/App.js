@@ -4,6 +4,7 @@ import ProductDetail from './product_details';
 import ProductList from './products'; 
 import { Component } from 'react';
 
+
 class App extends Component{
   state = {
     productListArray: [
@@ -27,8 +28,12 @@ class App extends Component{
       },
     ],
     currnentProduct: null,
+    preloader: true, 
   }
 
+  demoAsyncCall = () => {
+    return new Promise((resolve) => setTimeout(() => resolve(), 2500));
+  }
   selectProduct = (data) => {
     this.setState({ ...this.state, currentProduct: data });
   }
@@ -36,24 +41,48 @@ class App extends Component{
     this.setState({ ...this.state, currentProduct: null });
   }
 
-  render(){
-    // console.log(this.state.currentProduct, '====='); 
-    
-    return ( 
-      <div style={{
-          padding: '50px', 
-          backgroundColor: '#ddd',
-        }}> 
+  preloader_effect = (show) => {
+    this.setState({...this.state, preloader: show})
+  }
 
-        {this.state.currentProduct ? (
-          <ProductDetail currentProduct = {this.state.currentProduct} backToList = {this.backToList}/>
-          ) : (
-          <ProductList productlist={this.state.productListArray} selectProduct={this.selectProduct}/>
-        )} 
+  
+  componentDidMount(){
+    // alert(this.state.preloader);
     
-      </div>
+    console.log("Component is Mounted");
+  }
+  componentDidUpdate (){
+    console.log('component is updated');
+  }
+  componentWillUnmount (){
+    console.log('component is unmounted');
+  }
+
+  render(){ 
+    console.log('Component is Mounted inside render'); 
+     
+    return ( 
+      <> 
+      {/* <div class="loader-container">
+        <div class="loader"></div>
+      </div> */}
+ 
+          <div onLoad = {this.preloader_effect}  style={{
+              padding: '50px', 
+              backgroundColor: '#ddd',
+            }}>
+            
+            {this.state.currentProduct ? (
+              <ProductDetail currentProduct = {this.state.currentProduct} backToList = {this.backToList}/>
+              ) : (
+              <ProductList productlist={this.state.productListArray} selectProduct={this.selectProduct}/>
+            )} 
+        
+          </div> 
+      </>
     );  
   }
 }
+
 
 export default App;
