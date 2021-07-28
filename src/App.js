@@ -34,9 +34,6 @@ class App extends Component{
     preloader: true, 
   }
 
-  demoAsyncCall = () => {
-    return new Promise((resolve) => setTimeout(() => resolve(), 2500));
-  }
   selectProduct = (data) => {
     this.setState({ ...this.state, currentProduct: data });
   }
