@@ -30,8 +30,12 @@ function App() {
       },
     ]
   );
+  // const [loader, hideLoader] = true;
+  const [currentProduct, setCurrentProduct] = useState('');
  
- 
+  const selectProduct = () => {
+    
+  }
      
   return ( 
     <> 
@@ -39,7 +43,7 @@ function App() {
       {
         <>
         <ProductList products = {productListArray}/>
-        {/* <ProductDetails /> */}
+        <ProductDetails />
         </>
       }
     </>
