@@ -30,24 +30,43 @@ function App() {
       },
     ]
   );
-  // const [loader, hideLoader] = true;
-  const [currentProduct, setCurrentProduct] = useState('');
+  const [currentProduct, setCurrentProduct] = useState(null);
+  const [loader, hideLoader] = useState(true);
  
-  const selectProduct = () => {
-    
+  const selectProduct = (product) => {
+    setCurrentProduct({...currentProduct, currentProduct: product});
   }
-     
+  
+  const backToList = () => {
+    setCurrentProduct(null);
+  }
+
+  useEffect(() => {
+    setTimeout(() => {
+      hideLoader(false);
+    },1000);
+  },[loader]);
+
   return ( 
     <> 
       {/* <Contact pageName={"Contact Page"}/> */}
       {
-        <>
-        <ProductList products = {productListArray}/>
-        <ProductDetails />
-        </>
+        loader ? (
+          <>
+          <div className="loader-container">
+              <div className="loader"></div>
+            </div>
+          </>
+        ) : (
+          currentProduct ? <ProductDetails currentProduct={currentProduct} backToList = {backToList}/> :
+          <>
+          <ProductList products = {productListArray} selectProduct = {selectProduct}/>
+          
+          </>
+        )
       }
     </>
-  );   
+  );
 }
 
 
