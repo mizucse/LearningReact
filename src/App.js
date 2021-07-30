@@ -8,21 +8,18 @@ function App() {
   const [productListArray] = useState(
     [
       {
-        id: 1,
         name: 'HP Pavilion g4',
         description: 'Lorem Ipsum Laptop Description',
         price: '35000',
         category: 'Laptop',
       },
       {
-        id: 2,
         name: 'Keyboard',
         description: 'Lorem Ipsum keyboard Description',
         price: '1000',
         category: 'Accessories',
       },
       {
-        id: 3,
         name: 'Mouse',
         description: 'Lorem Ipsum Mouse Description',
         price: '500',
@@ -34,6 +31,7 @@ function App() {
   const [loader, hideLoader] = useState(true);
  
   const selectProduct = (product) => {
+    //console.log(product.category);
     setCurrentProduct({...currentProduct, currentProduct: product});
   }
   
@@ -55,10 +53,10 @@ function App() {
           <>
           <div className="loader-container">
               <div className="loader"></div>
-            </div>
+          </div>
           </>
         ) : (
-          currentProduct ? <ProductDetails currentProduct={currentProduct} backToList = {backToList}/> :
+          currentProduct ? <ProductDetails currentProductInfo={currentProduct} backToList = {backToList}/> :
           <>
           <ProductList products = {productListArray} selectProduct = {selectProduct}/>
           
