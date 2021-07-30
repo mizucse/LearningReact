@@ -32,7 +32,7 @@ function App() {
  
   const selectProduct = (product) => {
     //console.log(product.category);
-    setCurrentProduct({...currentProduct, currentProduct: product});
+    setCurrentProduct(product);
   }
   
   const backToList = () => {
@@ -56,7 +56,7 @@ function App() {
           </div>
           </>
         ) : (
-          currentProduct ? <ProductDetails currentProductInfo={currentProduct} backToList = {backToList}/> :
+          currentProduct ? <ProductDetails currentProduct={currentProduct} backToList = {backToList}/> :
           <>
           <ProductList products = {productListArray} selectProduct = {selectProduct}/>
           
