@@ -1,6 +1,6 @@
 import './App.css';
-import ProductList from './hook_component/productList'; 
-import ProductDetails from './hook_component/prodductDetails';
+import ProductList from './component/productList'; 
+import ProductDetails from './component/prodductDetails';
 import { useState, useEffect } from 'react';
 import {  Switch, Route, Link, Redirect } from 'react-router-dom';
 import { useParams } from 'react-router';
