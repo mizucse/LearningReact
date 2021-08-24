@@ -1,12 +1,17 @@
 import React,{useState, useEffect} from 'react'; 
 import { useHistory, useLocation, useParams } from 'react-router-dom';
+import axios from 'axios';
 
 const ProductList = (props) => {
 
     const [loader, hideLoader] = useState(true);
+    const [productList, setProductList] = useState([]);
     const history = useHistory();
 
     useEffect(() => {
+      axios.get('https://fakestoreapi.com/products').then(response=>{}).catch(error=>{});
+
+      
         setTimeout(() => {
           hideLoader(false);
         },1000);
@@ -26,7 +31,7 @@ const ProductList = (props) => {
                 </>
               )  : (
                 <>
-                <h4>Product List 111</h4>
+                <h4>Product List</h4>
                 {props.products.map((product) => { 
                   console.log(product)
                   return <>

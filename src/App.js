@@ -4,37 +4,13 @@ import ProductDetails from './component/prodductDetails';
 import { useState, useEffect } from 'react';
 import {  Switch, Route, Link, Redirect } from 'react-router-dom';
 import { useParams } from 'react-router';
-// import { Grid } from './node_modules/@material-ui/core';
+import {Grid} from '@material-ui/core';
+
+
 
 
 function App() {
-  const params = useParams();
-  console.log(params,"params====")
-  const [productListArray] = useState(
-    [
-      {
-        id: 1,
-        name: 'HP Pavilion g4',
-        description: 'Lorem Ipsum Laptop Description',
-        price: '35000',
-        category: 'Laptop',
-      },
-      {
-        id: 2,
-        name: 'Keyboard',
-        description: 'Lorem Ipsum keyboard Description',
-        price: '1000',
-        category: 'Accessories',
-      },
-      {
-        id: 3,
-        name: 'Mouse',
-        description: 'Lorem Ipsum Mouse Description',
-        price: '500',
-        category: 'Accessories',
-      },
-    ]
-  );
+  const params = useParams(); 
   const [currentProduct, setCurrentProduct] = useState(null);
   const [loader, hideLoader] = useState(true);
  
@@ -54,19 +30,33 @@ function App() {
   },[loader]);
 
   return ( 
-    <div>  
-      {/* <Link to="/product-list">Home</Link> */}
-      <Switch>
-        <Route exact path='/'>
-          <ProductList products = {productListArray}/>
-        </Route>
-        <Route path='/product-details/'>
-          <ProductDetails list = {productListArray}/>
-        </Route>
-        <Route path='*'>
-          <h1 className="text-center">404</h1>
-        </Route>
-      </Switch>
+    <Grid container justifyContent={'center'}> 
+      <Grid col md={12} alignItems={'center'}>
+        <Grid col md={6}>
+
+          <Link to="/">Home</Link>&nbsp;
+          <Link to="/product-list">Product List</Link> &nbsp;
+          <Link to="/product-details">Product Details</Link> &nbsp;
+        </Grid>
+      </Grid>
+        
+      <Grid col={12}>
+
+        <Switch>
+          <Route exact path='/'>
+            <h1 alignItems={"center"}>Welcome to Ecommerce home page</h1>
+          </Route>
+          <Route path='/product-list'>
+            <ProductList />
+          </Route>
+          <Route path='/product-details/'>
+            <ProductDetails />
+          </Route>
+          <Route path='*'>
+            <h1 alignItems={"center"}>404</h1>
+          </Route>
+        </Switch>
+      </Grid>
       {/* {
         loader ? (
           <>
@@ -82,7 +72,7 @@ function App() {
           </>
         )
       } */}
-    </div>
+    </Grid>
   );
 }
 
