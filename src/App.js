@@ -31,9 +31,8 @@ function App() {
 
   return ( 
     <Grid container justifyContent={'center'}> 
-      <Grid col md={12} alignItems={'center'}>
-        <Grid col md={6}>
-
+      <Grid col md={12} justifyContent={'center'}>
+        <Grid col md={12} >
           <Link to="/">Home</Link>&nbsp;
           <Link to="/product-list">Product List</Link> &nbsp;
           <Link to="/product-details">Product Details</Link> &nbsp;
@@ -46,10 +45,10 @@ function App() {
           <Route exact path='/'>
             <h1 alignItems={"center"}>Welcome to Ecommerce home page</h1>
           </Route>
-          <Route path='/product-list'>
+          <Route exact path='/product-list'>
             <ProductList />
           </Route>
-          <Route path='/product-details/'>
+          <Route exact path='/product-details/:id'>
             <ProductDetails />
           </Route>
           <Route path='*'>
