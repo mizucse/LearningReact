@@ -13,6 +13,7 @@ const ProductDetails = () => {
     useEffect(() => { 
         axios.get(`https://fakestoreapi.com/products/${id}`).then(response=>{
             setCurrentProduct(response.data); 
+            console.log(loader);
         }).catch(error=>{
             console.log(error,"==error");
         });
@@ -22,7 +23,7 @@ const ProductDetails = () => {
       },[]);
 
       const backToList = ()=> {
-          history.push("/");
+          history.push("/product-list");
       }
 
     return <>

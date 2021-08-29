@@ -1,6 +1,7 @@
 import './App.css';
 import ProductList from './component/productList'; 
 import ProductDetails from './component/prodductDetails';
+import AddProduct from './component/addProduct';
 import { useState, useEffect } from 'react';
 import {  Switch, Route, Link, Redirect } from 'react-router-dom';
 import { useParams } from 'react-router';
@@ -36,6 +37,7 @@ function App() {
           <Link to="/">Home</Link>&nbsp;
           <Link to="/product-list">Product List</Link> &nbsp;
           <Link to="/product-details">Product Details</Link> &nbsp;
+          <Link to="/add-product">Add New Product</Link> &nbsp;
         </Grid>
       </Grid>
         
@@ -50,6 +52,9 @@ function App() {
           </Route>
           <Route exact path='/product-details/:id'>
             <ProductDetails />
+          </Route>
+          <Route exact path='/add-product/'>
+            <AddProduct />
           </Route>
           <Route path='*'>
             <h1 alignItems={"center"}>404</h1>

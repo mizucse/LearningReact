@@ -27,7 +27,6 @@ const ProductList = (props) => {
 
     return <Grid container justifyConter="center"> 
       <Grid row><h4 col={12} justifyContent={'center'} textAlign={'center'}>Product List</h4></Grid>
-      <Grid container col={8}>
         {
             loader ? (
                 <>
@@ -37,23 +36,24 @@ const ProductList = (props) => {
                 </>
               )  : (
                 <>
-                {productList.map((product,index) => {
-                  return <Grid  md={2} spacing={3} style={{cursor: 'pointer',margin: '15px',padding: '15px',border: '1px dashed #000',}}>
-                      <div >
-                        <Grid>
-                          <img src={product.image} alt={product.title} width={'100%'}/>
-                          <p key={index}>Product Name : {product.title}</p>
-                          <p>Product Category: {product.category}</p>
-                          <button onClick={() => viewDetails(product.id)} >View Details</button>
+                  <Grid container col={8}>
+                  {productList.map((product,index) => {
+                    return <Grid  md={2} spacing={3} style={{cursor: 'pointer',margin: '15px',padding: '15px',border: '1px dashed #000',}}>
+                        <div >
+                          <Grid>
+                            <img src={product.image} alt={product.title} width={'100%'}/>
+                            <p key={index}>Product Name : {product.title}</p>
+                            <p>Product Category: {product.category}</p>
+                            <button onClick={() => viewDetails(product.id)} >View Details</button>
+                          </Grid>
+                        </div>
                         </Grid>
-                      </div>
-                      </Grid>
-                })}
+                  })}
+                    </Grid>
                 </>
             )
         }
-        
-      </Grid>
+         
     </Grid>
 }
 
