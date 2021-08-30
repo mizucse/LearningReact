@@ -37,7 +37,6 @@ function App() {
         <Grid col md={12} >
           <Link to="/">Home</Link>&nbsp;
           <Link to="/product-list">Product List</Link> &nbsp;
-          <Link to="/product-details">Product Details</Link> &nbsp;
           <Link to="/add-product">Add New Product</Link> &nbsp;
         </Grid>
       </Grid>
