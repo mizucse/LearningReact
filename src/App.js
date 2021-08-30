@@ -2,6 +2,7 @@ import './App.css';
 import ProductList from './component/productList'; 
 import ProductDetails from './component/prodductDetails';
 import AddProduct from './component/addProduct';
+import UpdateProduct from './component/updateProduct';
 import { useState, useEffect } from 'react';
 import {  Switch, Route, Link, Redirect } from 'react-router-dom';
 import { useParams } from 'react-router';
@@ -52,6 +53,9 @@ function App() {
           </Route>
           <Route exact path='/product-details/:id'>
             <ProductDetails />
+          </Route>
+          <Route exact path='/update-product/:id'>
+            <UpdateProduct />
           </Route>
           <Route exact path='/add-product/'>
             <AddProduct />

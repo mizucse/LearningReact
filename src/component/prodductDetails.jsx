@@ -26,6 +26,21 @@ const ProductDetails = () => {
           history.push("/product-list");
       }
 
+      const updateProduct = (id)=> {
+          history.push(`/update-product/${id}`);
+      }
+
+      const deleteProduct = (id)=> {
+        axios.delete(`https://fakestoreapi.com/products/${id}`)
+        .then(response=>{
+            //setCurrentProduct(response.data); 
+            console.log(response.data);
+            history.push("/product-list");
+        }).catch(error=>{
+            console.log(error,"==error");
+        }); 
+      }
+
     return <>
         {
             loader ? (
@@ -44,6 +59,8 @@ const ProductDetails = () => {
                             <p>Product Category: {currentProduct?.category}</p>
                             <p>Product Price: {currentProduct?.price}</p>
                             <p>Product Description: {currentProduct?.description}</p>
+                            <button onClick={(() => updateProduct(currentProduct.id))}>Update Product</button>
+                            <button onClick={(() => deleteProduct(currentProduct.id))}>Delete Product</button>
                             <button onClick={(() => backToList())}>Back to list</button>
                         </div> 
                     </Grid>

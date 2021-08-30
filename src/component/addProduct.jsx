@@ -10,7 +10,7 @@ import { useHistory } from 'react-router-dom';
      const [product, setProduct] = useState({
          name: '',
          price: '',
-         category: 'aa',
+         category: '',
          image: '',
          description: '',
      });
