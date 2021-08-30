@@ -6,6 +6,7 @@ import { useHistory, useParams} from 'react-router-dom';
 
 
 const UpdateProduct = () => {
+    const [loader, hideLoader] = useState(true);
     const history = useHistory();
     const {id} = useParams();
     const [product, setProduct] = useState({
@@ -19,7 +20,8 @@ const UpdateProduct = () => {
     const addProduct = (e,key) => {
        setProduct({...product,[key]: e.target.value})
     }
-    useEffect(() => { 
+    useEffect(() => {
+        
         axios.get(`https://fakestoreapi.com/products/${id}`)
         .then((response)=>{
             // console.log(response.data, "===response in then");
@@ -30,6 +32,7 @@ const UpdateProduct = () => {
            console.log(error, "===response in catch")
 
         });
+        setTimeout(() => { hideLoader(false); },1000);
     },[]);
 
     const requestUpdateProduct = (id) => {
@@ -49,30 +52,40 @@ const UpdateProduct = () => {
     }
 
    return <>
-       <Grid container justifyConter="center">
-           <Grid container md={2}>
-               <h4>Update Product</h4>
-               <div style={{margin: '15px 0',padding: '15px'}}> 
-                   <div>
-                       <p>Product Name: </p>
-                       <input value={product.title} onChange={e=> addProduct(e,'title')} />
-                   </div>
-                   <div>
-                       <p>Product Category </p>
-                       <input value={product.category} onChange={e=> addProduct(e,'category')}/>
-                   </div>
-                   <div>
-                       <p>Product Price: </p>
-                       <input value={product.price} onChange={e=> addProduct(e,'price')}/>
-                   </div>
-                   <div>
-                       <p>Product Description:  </p>
-                       <input value={product.description} onChange={e=> addProduct(e,'description')}/>
-                   </div> 
-                       <button onClick={() => requestUpdateProduct(product.id)}>Update</button> 
-               </div>
-           </Grid>
-       </Grid>
+    {
+        loader ? (
+            <>
+            <div className="loader-container">
+                <div className="loader"></div>
+                </div>
+            </>
+            )  : (
+            <Grid container justifyConter="center">
+                <Grid container md={2}>
+                    <h4>Update Product</h4>
+                    <div style={{margin: '15px 0',padding: '15px'}}> 
+                        <div>
+                            <p>Product Name: </p>
+                            <input value={product.title} onChange={e=> addProduct(e,'title')} />
+                        </div>
+                        <div>
+                            <p>Product Category </p>
+                            <input value={product.category} onChange={e=> addProduct(e,'category')}/>
+                        </div>
+                        <div>
+                            <p>Product Price: </p>
+                            <input value={product.price} onChange={e=> addProduct(e,'price')}/>
+                        </div>
+                        <div>
+                            <p>Product Description:  </p>
+                            <input value={product.description} onChange={e=> addProduct(e,'description')}/>
+                        </div> 
+                            <button onClick={() => requestUpdateProduct(product.id)}>Update</button> 
+                    </div>
+                </Grid>
+            </Grid>
+            )
+        }
    </>
 }
 
